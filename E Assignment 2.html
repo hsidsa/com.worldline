@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A Evaluation</title>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <center>
+        <h1 style="color: cadetblue; padding: 15px;"> Evaluation Assignment </h1>
+        <!-- 3 -->
+        <input type="number" id="num" name="num" onchange=" createInputField()" placeholder="Enter No. Of Brands"><br><br>
+        <form id="myForm">
+
+        </form>
+        <!-- 5 -->
+        <input type="submit" id="addData" value="Add" onclick="addData()">
+        <div id="table"></div>
+        <br><br><input type='button' value='SORT' onclick='sort()'>
+        <!-- 6 -->
+        <br><br><input type="search" placeholder="Search the Brands" onclick="search()">
+    </center>
+
+    <script>
+        //1. Create a blank  array of brand objects
+        //2. Brand Object should have 2 properties 'name' and 'ratings'.
+        //3. provide a input field with type='number' to take no of brands user wants to enter
+        //4. provide onChange event handler(listener function) on the input field created above .
+        //   This event listener should immediately display those many input fields in a form
+        //   e.g.
+        //   if number entered by user is 3 , then onChange  event listener function should show 6 input fields to accept data.
+        //5. Once user enters data he should press "Add" button . onclick event handler should add all brands into array
+        //   given sortByRating button once user clicks sort by rating button, all brands should appear in tabular format
+        //   in ascending order of ratings.
+        //6. Provide a search input field . User will enter text. If all characters match with brand name, then matching brand names only should appear.
+
+        //1 
+        var brands = [];
+
+        brandsInitials = [{
+            name: 'Tata',
+            ratings: 0
+        }, {
+            name: 'Toyota',
+            ratings: 0
+        }, {
+            name: 'Honda',
+            ratings: 0
+        }, {
+            name: 'BMW',
+            ratings: 0
+        }];
+        //4
+        function createInputField() {
+            const myNode = document.getElementById("myForm");
+            while ((myNode.lastChild !== '<input type="submit" id="addData" value="Add">' && myNode.childNodes.length != 1)) {
+                myNode.removeChild(myNode.lastChild);
+            }
+            var val = document.getElementById("num").value;
+            var container = document.getElementById("myForm");
+            for (let i = 0; i < val; i++) {
+
+                var input = document.createElement("input");
+                var input2 = document.createElement("input");
+                input.id = "brand" + i;
+                input2.id = "ratings" + i;
+                input2.type = "number";
+                input.name = "brandName";
+                input2.name = "Ratings";
+                input.placeholder = "Brand Name";
+                input2.placeholder = "Brand Ratings";
+                container.appendChild(input);
+                container.appendChild(input2);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createElement("br"));
+            }
+        }
+
+        function addData() {
+
+            var formElement = document.forms[0].elements;
+
+            for (var i = 0; i < formElement.length / 2; i++) {
+                var brandsObj = {};
+                //2
+                brandsObj["brandName"] = document.getElementById("brand" + i).value;
+                brandsObj["ratings"] = document.getElementById("ratings" + i).value;
+                brands.push(brandsObj);
+                console.log(brandsObj.brandname);
+            }
+
+            console.log(brands.length);
+        }
+
+        function sort() {
+
+        }
+
+        function search() {
+
+        }
+    </script>
+</body>
+
+</html>
